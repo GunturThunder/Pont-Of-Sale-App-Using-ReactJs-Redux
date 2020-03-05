@@ -1,0 +1,15 @@
+.cartt{
+    text-align: center;
+    width: 25%;
+    background-color: white;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.div-cart{
+    border-radius: 18px 18px 18px 18px;
+    background-color: #5DDEFF;
+    color:white;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+}
