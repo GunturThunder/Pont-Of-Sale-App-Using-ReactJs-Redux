@@ -22,7 +22,6 @@ const category = (state = initialState, action) => {
             return{
                 ...state,
                 // isLoading: true,
-
             }
         case 'POST_CATEGORYS_REJECTED':
             return{

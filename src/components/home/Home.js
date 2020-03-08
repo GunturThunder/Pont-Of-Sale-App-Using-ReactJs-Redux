@@ -7,9 +7,8 @@ import './Home.css'
 
 class Home extends Component{
     componentDidMount(){
-        if(localStorage.getItem('status') !== 'admin'){
-            alert('you login as cashier. please logout and login as admin')
-            this.props.history.push('/cashier')
+        if(!localStorage.getItem('isAuth')){
+            this.props.history.push('/login');
         }
     }
 
@@ -18,12 +17,12 @@ class Home extends Component{
         localStorage.removeItem('token');
         localStorage.removeItem('isAuth');
         localStorage.removeItem('status');
-        this.props.history.push('/adminlogin');
+        this.props.history.push('/login');
     }
     render(){
         return(
             <div className="home">
-                <Link to="/adminlogin" onClick={this.onLogout.bind(this)}>Logout</Link>
+                <Link to="/login" onClick={this.onLogout.bind(this)}>Logout</Link>
                 <NavBar />
                 <Content />
                 <Cart />

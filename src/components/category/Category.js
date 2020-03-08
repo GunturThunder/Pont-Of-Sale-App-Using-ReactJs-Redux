@@ -71,7 +71,7 @@ class Category extends Component{
         return(
             <div className="wrap" style={{backgroundColor:'#EFF3F3', width:'100%', height:'100vh', position:'absolute'}}>
                 <div className="container" style={{marginTop:'10vh'}}>
-                <Link to="/admin"><button className="btn btn-secondary" style={{marginBottom:'10px'}}>Back</button></Link>
+                <Link to="/"><button className="btn btn-secondary" style={{marginBottom:'10px'}}>Back</button></Link>
                     <Navbar bg="light" expand="lg">
                     <Form onSubmit={this.onSubmit}>
                         <tr>

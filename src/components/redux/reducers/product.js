@@ -1,5 +1,6 @@
 const initialState = {
-    products: []
+    products: [],
+    totalPage:[]
 }
 
 const product = (state = initialState, action) => {
@@ -19,19 +20,11 @@ const product = (state = initialState, action) => {
                 ...state,
                 products: action.payload.data.result
             }
-        case 'GET_PAGINATION_PENDING':
-            return {
-                ...state
-            }
-        case 'GET_PAGINATION_REJECTED':
-            return {
-                ...state
-            }
         case 'GET_PAGINATION_FULFILLED':
             // console.log(action.payload)
             return {
                 ...state,
-                products: action.payload.data.result
+                products: action.payload.data.result,
             }    
         case 'GET_SORTPRODUCTS_PENDING':
             return {
@@ -46,6 +39,7 @@ const product = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload.data.result
+
             }
        case 'GET_PRODUCTS_PENDING':
            return{
@@ -59,7 +53,8 @@ const product = (state = initialState, action) => {
             console.log(action.payload)
            return{
                ...state,
-               products: action.payload.data.result
+               products: action.payload.data.result,
+               totalPage: action.payload.data.totalPage
            }
         case 'POST_PRODUCT_PENDING':
             return{

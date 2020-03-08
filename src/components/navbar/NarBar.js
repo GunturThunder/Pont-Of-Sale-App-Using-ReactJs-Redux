@@ -3,17 +3,30 @@ import { Navbar, Nav, Dropdown, Form, FormControl} from 'react-bootstrap';
 import './NavBar.css';
 import { searchProduct, sortProduct } from '../redux/action/product';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 
 class NavBar extends Component{
-    searchProductHadle = (event) => {
-        console.log(event.target.value)
-        this.props.dispatch(searchProduct(event.target.value));
+    state={
+        name:'',
+        sort:''
     }
 
     sortProductHadle = (event) => {
-        // console.log(event.target.value)
-        this.props.dispatch(sortProduct(event.target.value));
+        this.setState({
+            sort:event.target.value
+        })
+        // this.props.history.push(`/product?limit=6&searchName=${this.state.name}&sort=${event.target.value}`)
+        this.props.dispatch(searchProduct(this.state.name,event.target.value));
     }
+
+    searchProductHadle = (event) => {
+        this.setState({
+            name:event.target.value
+        })
+        // this.props.history.push(`/product?limit=6&searchName=${event.target.value}&sort=${this.state.sort}`)
+        this.props.dispatch(searchProduct(event.target.value,this.state.sort));
+    }
+
     render(){
         return(
             <div className="navbar" style={{margin:'0', padding:'0'}}>
@@ -56,4 +69,4 @@ class NavBar extends Component{
 //     }
 // }
 
-export default connect()(NavBar);
+export default withRouter(connect()(NavBar));

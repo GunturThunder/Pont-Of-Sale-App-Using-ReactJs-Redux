@@ -20,7 +20,7 @@ class Login extends Component{
 
     componentDidMount(){
         if(localStorage.getItem('token')){
-            this.props.history.push('/admin');
+            this.props.history.push('/');
         }
     }
 
@@ -30,23 +30,16 @@ class Login extends Component{
 
     onSubmit = (e) => {
         e.preventDefault();
+        // console.log('hahaa');
 
         axios
             .post("http://localhost:4040/user/login", this.state)
             .then(res => {
-                // console.log(res.data);
-                if(res.data.status === 'admin'){
-                    localStorage.setItem('token', res.data.token);
-                    localStorage.setItem('user-id', res.data.id_user);
-                    localStorage.setItem('isAuth', true);
-                    localStorage.setItem('status',res.data.status)
-                    this.props.history.push('/admin');
-                }
-                else{
-                    alert('You are a cashier, please login in cashier form')
-                    this.props.history.push('/cashierlogin');
-                }
-               
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('user-id', res.data.id_user);
+                localStorage.setItem('isAuth', true);
+                localStorage.setItem('status',res.data.status)
+                this.props.history.push('/');
             })
             .catch(err => {
                 console.log(err);

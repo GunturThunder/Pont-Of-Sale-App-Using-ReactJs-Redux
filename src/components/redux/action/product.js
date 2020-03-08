@@ -14,12 +14,12 @@ export const pagination = (data) => {
     }
 }
 
-export const searchProduct = (data) => {
+export const searchProduct = (name,sort) => {
     return {
         type: 'GET_SEARCHPRODUCTS',
         payload: axios({
             method: "GET",
-            url: `http://localhost:4040/product?limit=6&searchName=${data}`,
+            url: `http://localhost:4040/product?limit=6&searchName=${name}&sort=${sort}`,
             headers:{
                 authorization: localStorage.getItem('token'),
                 "user-id" : localStorage.getItem('user-id')

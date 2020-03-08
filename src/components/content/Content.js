@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import './Content.css';
 import fork from './fork.png';
 import list from './list.png';
+import user from './user.png'
 import AddProduct from '../modal/AddProduct';
 import EditProduct from '../modal/EditProduct';
 import product from '../redux/reducers/product';
@@ -90,29 +91,36 @@ class Content extends Component{
         this.props.dispatch(addCart(product))
       }
 
-    paginationHadle = (event) => {
+    paginationHandle = (event) => {
         // console.log(event.target.value)
-        this.props.dispatch(pagination(event.target.value));
+        this.props.dispatch(pagination(event.target.id));
     }
     render(){
         // console.log(getProducts())
-        const { products, categorys } = this.props;
-        return(
-            <div className="content">
-                <center>
-                <div className="sidebar">
-                <Link to="/category"><img src={fork} style={{width:"50px",height:"50px", marginTop:"15px"}}/></Link>
-                    <img src={list} style={{width:"50px",height:"50px", marginTop:"40px"}}/>
-                    <span className="plus-icon"><b onClick={this.handleShow} style={{cursor: "cell"}}>+</b></span><br/>
-                    <select style={{width:'65px'}} id="inputState" class="form-control btn btn-primary" onChange={this.paginationHadle}>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                            </select>
-                    {/* <button style={{border:'1px solid #82DE3A', width:'50px',backgroundColor:'#E6F8D8', color:'#82DE3A'}}>Page</button> */}
-                </div>
-                </center>
-                <div className="content-card">
-                    { products.map((product, index) =>
+        const { products, categorys, pagination } = this.props;
+        const Check = () =>{
+            if(localStorage.getItem('status')==='admin'){
+                return(
+                    <div>
+                        <Link to="/category"><img src={fork} style={{width:"50px",height:"50px", marginTop:"15px"}}/></Link>
+                        <img src={list} style={{width:"50px",height:"50px", marginTop:"40px"}}/>
+                        <img src={user} style={{width:"50px",height:"50px", marginTop:"40px"}}/>
+                        <span className="plus-icon"><b onClick={this.handleShow} style={{cursor: "cell"}}>+</b></span><br/>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <div>
+                    </div>
+                )
+            }
+        }
+        const Select = () =>{
+            if(localStorage.getItem('status')==='admin'){
+                return(
+                    <span>
+                        { products.map((product, index) =>
                         <div className="card" key={index} >
                             <div className="img" onClick={()=>(this.onAddChart(product,product.id_product))}>
                                 <img src={product.image} title={product.description}/>
@@ -125,10 +133,48 @@ class Content extends Component{
                             <button type="button" className="btn btn-danger" data-toggle="modal" onClick={()=>(this.handleShowDelete(product))}/*data-target="#deletemodal" onClick={() => this.deleteButtonHandler(post.id_product)}*/>Delete</button>
                         </div>
                     )}
+                    </span>
+                )
+            }
+            else{
+                return(
+                    <span>
+                        { products.map((product, index) =>
+                        <div className="card" key={index} >
+                            <div className="img" onClick={()=>(this.onAddChart(product,product.id_product))}>
+                                <img src={product.image} title={product.description}/>
+                            </div>
+                            <div className="content-product">
+                                <h4>{product.name}</h4>
+                                <h6>Rp. {product.price}</h6>
+                            </div>
+                            <button type="button" className="btn btn-primary" onClick={()=>(this.onAddChart(product,product.id_product))}>Add To Cart</button>
+                        </div>
+                    )}
+                    </span>
+                )
+            }
+        }
+        return(
+            <div className="content">
+                <center>
+                <div className="sidebar">
+                    <Check />
+                </div>
+                </center>
+                <div className="content-card">
+                    <Select />
                 </div>
                 <AddProduct show={this.state.show} onHide={this.handleClose} categorys={categorys}/>
                 <EditProduct show={this.state.showEdit} onHide={this.handleCloseEdit} product={this.state.selectProduct}  />
                 <DeleteProduct show={this.state.showDelete} onHide={this.handleCloseDelete} products={this.state.data} />
+                <nav aria-label="Page navigation example" style={{marginTop:'85.5vh', marginLeft:'50%'}}>
+                <ul className="pagination" >
+                    {pagination.map((pagination)=>(
+                        <li style={{color:'white',border:'1px solid white'}} className="page-item" key={pagination}><a className="form-control btn btn-primary" onClick={this.paginationHandle} id={pagination}>{pagination}</a></li>
+                    ))}
+                </ul>
+                </nav>
             </div>
         )
     }
@@ -138,7 +184,8 @@ const mapStateToProps = (state) => {
     //console.log(state)
     return{
         products: state.products.products,
-        categorys: state.categorys.categorys
+        categorys: state.categorys.categorys,
+        pagination: state.products.totalPage
         // cart: state.cart.cart
     }
 }
