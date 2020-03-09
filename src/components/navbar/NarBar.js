@@ -3,7 +3,8 @@ import { Navbar, Nav, Dropdown, Form, FormControl} from 'react-bootstrap';
 import './NavBar.css';
 import { searchProduct, sortProduct } from '../redux/action/product';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+import { logo } from './logo.png'
 
 class NavBar extends Component{
     state={
@@ -15,16 +16,19 @@ class NavBar extends Component{
         this.setState({
             sort:event.target.value
         })
-        // this.props.history.push(`/product?limit=6&searchName=${this.state.name}&sort=${event.target.value}`)
+        this.props.history.push(`?limit=6&searchName=${this.state.name}&sort=${event.target.value}`)
         this.props.dispatch(searchProduct(this.state.name,event.target.value));
     }
 
-    searchProductHadle = (event) => {
-        this.setState({
+    searchProductHadle = async (event) => {
+        // console.log
+        await this.setState({
             name:event.target.value
         })
-        // this.props.history.push(`/product?limit=6&searchName=${event.target.value}&sort=${this.state.sort}`)
-        this.props.dispatch(searchProduct(event.target.value,this.state.sort));
+        console.log(this.state.name)
+        this.props.history.push(`?limit=6&searchName=${this.state.name}&sort=${this.state.sort}`)
+        console.log(this.props)
+        this.props.dispatch(searchProduct(this.state.name,this.state.sort));
     }
 
     render(){
@@ -32,7 +36,7 @@ class NavBar extends Component{
             <div className="navbar" style={{margin:'0', padding:'0'}}>
 
                 <Navbar bg="white" expand="lg" style={{width:'75%', borderRight:'1px solid #F2F2F2'}}>
-                        <Navbar.Brand href="#home" style={{marginLeft:'15%'}}><b style={{color:'#959595'}}>AsaUlu Rest</b></Navbar.Brand>
+                        <Navbar.Brand href="/" style={{marginLeft:'15%'}}><b style={{color:'#959595'}}>AsaUlu Rest</b></Navbar.Brand>
                             <select style={{width:'11%'}} id="inputState" class="form-control btn btn-primary" onChange={this.sortProductHadle}>
                                 <option selected disabled>Sort By</option>
                                 <option value="name">Name</option>

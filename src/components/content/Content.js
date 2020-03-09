@@ -104,7 +104,7 @@ class Content extends Component{
                     <div>
                         <Link to="/category"><img src={fork} style={{width:"50px",height:"50px", marginTop:"15px"}}/></Link>
                         <img src={list} style={{width:"50px",height:"50px", marginTop:"40px"}}/>
-                        <img src={user} style={{width:"50px",height:"50px", marginTop:"40px"}}/>
+                        <Link to="/user"><img src={user} style={{width:"50px",height:"50px", marginTop:"40px"}}/></Link>
                         <span className="plus-icon"><b onClick={this.handleShow} style={{cursor: "cell"}}>+</b></span><br/>
                     </div>
                 )

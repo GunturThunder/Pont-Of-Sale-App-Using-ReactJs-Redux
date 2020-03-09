@@ -5,7 +5,7 @@ export const getUsers = () => {
         type: 'GET_USERS',
         payload: axios({
             method: "GET",
-            url: "http://localhost:4040/user"
+            url: process.env.REACT_APP_URL+'user'
         })
     }
 }
@@ -15,7 +15,7 @@ export const createUser = (data) => {
         type: 'POST_USERS',
         payload: axios({
             method: "POST",
-            url: "http://localhost:4040/user/register",
+            url: process.env.REACT_APP_URL+'user/register',
             data: data
         })
     }

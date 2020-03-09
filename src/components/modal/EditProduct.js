@@ -97,7 +97,7 @@ class ProductAdd extends Component{
     
 }
 const mapStateToProps = (state) => {
-    console.log(state)
+    // console.log(state)
     return{
         categorys: state.categorys.categorys,
         // cart: state.cart.cart

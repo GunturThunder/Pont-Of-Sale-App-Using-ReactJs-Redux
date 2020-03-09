@@ -33,7 +33,7 @@ class Login extends Component{
         // console.log('hahaa');
 
         axios
-            .post("http://localhost:4040/user/login", this.state)
+            .post(process.env.REACT_APP_URL+'user/login', this.state)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('user-id', res.data.id_user);
