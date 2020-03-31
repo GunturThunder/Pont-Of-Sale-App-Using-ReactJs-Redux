@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import './Content.css';
 import fork from './fork.png';
 import list from './list.png';
-import user from './user.png'
+import user from './user.png';
 import AddProduct from '../modal/AddProduct';
 import EditProduct from '../modal/EditProduct';
 import product from '../redux/reducers/product';
@@ -95,6 +95,12 @@ class Content extends Component{
         // console.log(event.target.value)
         this.props.dispatch(pagination(event.target.id));
     }
+    convertToRupiah = (angka) => {
+        var rupiah = ''
+        var angkarev = angka.toString().split('').reverse().join('')
+        for (var i = 0; i < angkarev.length; i++) if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.'
+        return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('') + ',-'
+      }
     render(){
         // console.log(getProducts())
         const { products, categorys, pagination } = this.props;
@@ -119,7 +125,7 @@ class Content extends Component{
         const Select = () =>{
             if(localStorage.getItem('status')==='admin'){
                 return(
-                    <span>
+                    <div className="fix-card">
                         { products.map((product, index) =>
                         <div className="card" key={index} >
                             <div className="img" onClick={()=>(this.onAddChart(product,product.id_product))}>
@@ -127,13 +133,13 @@ class Content extends Component{
                             </div>
                             <div className="content-product">
                                 <h4>{product.name}</h4>
-                                <h6>Rp. {product.price}</h6>
+                                <h6>{this.convertToRupiah(product.price)}</h6>
                             </div>
                             <button type="button" className="btn btn-primary" data-toggle="modal" onClick={()=>(this.onSelectItemProductEdit(product))} /*data-target="#editData" onClick={()=>this.onClickHandler(post.id_product)}*/>Edit</button>
                             <button type="button" className="btn btn-danger" data-toggle="modal" onClick={()=>(this.handleShowDelete(product))}/*data-target="#deletemodal" onClick={() => this.deleteButtonHandler(post.id_product)}*/>Delete</button>
                         </div>
                     )}
-                    </span>
+                    </div>
                 )
             }
             else{
@@ -169,11 +175,11 @@ class Content extends Component{
                 <EditProduct show={this.state.showEdit} onHide={this.handleCloseEdit} product={this.state.selectProduct}  />
                 <DeleteProduct show={this.state.showDelete} onHide={this.handleCloseDelete} products={this.state.data} />
                 <nav aria-label="Page navigation example" style={{marginTop:'85.5vh', marginLeft:'50%'}}>
-                <ul className="pagination" >
+                {/* <ul className="pagination" >
                     {pagination.map((pagination)=>(
                         <li style={{color:'white',border:'1px solid white'}} className="page-item" key={pagination}><a className="form-control btn btn-primary" onClick={this.paginationHandle} id={pagination}>{pagination}</a></li>
                     ))}
-                </ul>
+                </ul> */}
                 </nav>
             </div>
         )

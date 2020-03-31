@@ -4,7 +4,7 @@ import './NavBar.css';
 import { searchProduct, sortProduct } from '../redux/action/product';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { logo } from './logo.png'
+import logo  from './logo.png'
 
 class NavBar extends Component{
     state={
@@ -32,11 +32,13 @@ class NavBar extends Component{
     }
 
     render(){
+        console.log("iniiiiii",this.props.cart)
         return(
             <div className="navbar" style={{margin:'0', padding:'0'}}>
 
                 <Navbar bg="white" expand="lg" style={{width:'75%', borderRight:'1px solid #F2F2F2'}}>
-                        <Navbar.Brand href="/" style={{marginLeft:'15%'}}><b style={{color:'#959595'}}>AsaUlu Rest</b></Navbar.Brand>
+                <img src={logo} style={{width:"40px",height:"40px"}}/>
+                        <Navbar.Brand href="/" style={{marginLeft:'1%'}}><b style={{color:'#007BFF'}}>AsaUlu</b></Navbar.Brand>
                             <select style={{width:'11%'}} id="inputState" class="form-control btn btn-primary" onChange={this.sortProductHadle}>
                                 <option selected disabled>Sort By</option>
                                 <option value="name">Name</option>
@@ -55,7 +57,7 @@ class NavBar extends Component{
                 </Navbar>
 
                 <div className="cartt">
-                    <b>Cart</b> <span className="div-cart">0</span>
+                    <b>Cart</b> <span className="div-cart">{this.props.cart}</span>
                 </div>
 
             </div>
@@ -64,13 +66,13 @@ class NavBar extends Component{
 }
 
 
+
 // export default NavBar;
 
-// const mapStateToProps = (state) => {
-//     return {
-//         // products: state.products.products,
-//         // categorys: state.categorys.categorys
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        cart : state.cart.totalPurchase
+    }
+}
 
-export default withRouter(connect()(NavBar));
+export default withRouter(connect(mapStateToProps)(NavBar));

@@ -16,12 +16,13 @@
     height: 85vh;
     background-color: #EBEDEF;
     float: right;
-    flex-wrap: wrap;
-    justify-content: center;
     overflow-y: scroll;
+}
+.fix-card{
+    flex-wrap: wrap;
+    justify-content:center;
     display: flex;
 }
-
 .navLeft{
     width: 75px;
     height: 91.5vh;

@@ -52,10 +52,10 @@ class Login extends Component{
                 <img className="elipse" src={elipse} />
                 <img className="human" src={human} />
                 <img className="bg" src={bg}/>
-                <Link to="/cashierlogin"><Button variant="primary" type="submit" style={{position:'absolute',marginTop:'22vh', marginLeft:'7%'}}>Login Cashier</Button></Link>
+                {/* <Link to="/cashierlogin"><Button variant="primary" type="submit" style={{position:'absolute',marginTop:'22vh', marginLeft:'7%'}}>Login Cashier</Button></Link> */}
                 <div className="container" style={{marginTop:'27vh', marginLeft:'30%',position:'absolute', textAlign: 'center', border:'1px solid #F6FEFF', width:'35%'}}>
                     <Form onSubmit={this.onSubmit}>
-                    <h4 style={{ marginTop: '10px', color:'#949C9C' }}>Login Admin</h4><hr/>
+                    <h4 style={{ marginTop: '10px', color:'#949C9C' }}>Login</h4><hr/>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{color:'#949C9C'}}>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" name="email" onChange={this.onChange} />

@@ -3,7 +3,7 @@ import './Cart.css';
 import logo from './pic.png';
 import cart from './Black Forest.png'
 import { connect } from 'react-redux';
-import { addQty, reduceQty } from '../redux/action/cart';
+import { addQty, reduceQty, deleteFromCart } from '../redux/action/cart';
 
 class Cart extends Component{
     // constructor (props) {
@@ -22,6 +22,10 @@ class Cart extends Component{
             this.props.dispatch(reduceQty(id_product))
         }
      }
+     deleteFromCart = (id_product) => {
+        this.props.dispatch(deleteFromCart(id_product));
+        // console.log(id_product)
+      };
     render(){
         const { cart } = this.props
         var total = cart.qty * cart.price
@@ -33,7 +37,7 @@ class Cart extends Component{
                     <center>
                         <div className="cart-item">
                             <div className="img-cart">
-                                <img className="img-cartt" src={cart.image} />
+                                <img className="img-cartt" src={cart.image} onClick={() => this.deleteFromCart(cart.id_product)} />
                             </div>
                             <div style={{marginLeft:'7px'}}>
                                 <h6 style={{marginTop:'10px', lineHeight:'40px', marginLeft:'40px'}}>{cart.name}</h6>
@@ -48,7 +52,6 @@ class Cart extends Component{
                         {/* <img src={logo} style={{marginTop: "35px"}}/><br/><b>Your Cart Is Empty</b> */}
                     </center>
                     )}
-                    {/* <p>{total}</p> */}
                     
                 </div>
             </div>
@@ -56,7 +59,7 @@ class Cart extends Component{
     }
 }
 const mapStateToProps = (state) => {
-    // console.log(state)
+    console.log(state)
     return {
         cart: state.cart.cart
       }

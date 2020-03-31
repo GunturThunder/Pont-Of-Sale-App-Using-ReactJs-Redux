@@ -86,7 +86,7 @@ export const deleteProduct = (id_product) => {
         type: "DELETE_PRODUCT",
         payload: axios({
             method: "DELETE",
-            url: `http://localhost:4040/product/${id_product}`
+            url: process.env.REACT_APP_URL+`product/${id_product}`
         })
     }
 }
