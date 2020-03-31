@@ -86,7 +86,7 @@ class Content extends Component{
     }
 
     onAddChart = (product) => {
-        
+        // console.log(product)
         product.qty = 1 
         this.props.dispatch(addCart(product))
       }
@@ -128,7 +128,7 @@ class Content extends Component{
                     <div className="fix-card">
                         { products.map((product, index) =>
                         <div className="card" key={index} >
-                            <div className="img" onClick={()=>(this.onAddChart(product,product.id_product))}>
+                            <div className="img" onClick={()=>(this.onAddChart(product))}>
                                 <img src={product.image} title={product.description}/>
                             </div>
                             <div className="content-product">
@@ -147,14 +147,14 @@ class Content extends Component{
                     <span>
                         { products.map((product, index) =>
                         <div className="card" key={index} >
-                            <div className="img" onClick={()=>(this.onAddChart(product,product.id_product))}>
+                            <div className="img" onClick={()=>(this.onAddChart(product))}>
                                 <img src={product.image} title={product.description}/>
                             </div>
                             <div className="content-product">
                                 <h4>{product.name}</h4>
                                 <h6>Rp. {product.price}</h6>
                             </div>
-                            <button type="button" className="btn btn-primary" onClick={()=>(this.onAddChart(product,product.id_product))}>Add To Cart</button>
+                            <button type="button" className="btn btn-primary" onClick={()=>(this.onAddChart(product))}>Add To Cart</button>
                         </div>
                     )}
                     </span>

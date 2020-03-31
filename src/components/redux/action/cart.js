@@ -1,27 +1,27 @@
-export const addCart = (data,id_product) => {
+export const addCart = (data) => {
     return {
       type: 'ADD_CART',
-      payload: data,id_product
+      payload: data
     }
   }
   
-  export const addQty = (id_product) => {
+  export const addQty = (cart) => {
     return {
       type: 'ADD_QTY',
-      payload: id_product
+      payload: cart
     }
   }
   
-  export const reduceQty = (id_product) => {
+  export const reduceQty = (cart) => {
       return {
         type: 'REDUCE_QTY',
-        payload: id_product
+        payload: cart
       }
     }
     
-    export const deleteFromCart = (id_product) => {
+    export const deleteFromCart = (cart) => {
       return {
         type: 'DELETE_FROM_CART',
-        payload: {id_product}
+        payload: {cart}
       }
     }

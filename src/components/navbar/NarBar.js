@@ -32,7 +32,7 @@ class NavBar extends Component{
     }
 
     render(){
-        console.log("iniiiiii",this.props.cart)
+        // console.log("iniiiiii",this.props.cart)
         return(
             <div className="navbar" style={{margin:'0', padding:'0'}}>
 
