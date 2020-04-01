@@ -22,7 +22,7 @@ class Home extends Component{
     render(){
         return(
             <div className="home">
-                <Link to="/login" onClick={this.onLogout.bind(this)}>Logout</Link>
+                {/* <Link to="/login" onClick={this.onLogout.bind(this)}>Logout</Link> */}
                 <NavBar />
                 <Content />
                 <Cart />

@@ -1,6 +1,6 @@
 const initialState = {
   cart: [],
-  total:0,
+  total: 0,
   totalPurchase: 0
 }
 
@@ -80,7 +80,13 @@ const cart = (state = initialState, action) => {
         totalPurchase: state.totalPurchase - 1,
         total: action.payload.cart.total
       }
-
+    case 'REMOVE_CART':
+      return {
+        ...state,
+        totalPurchase:0,
+        total: 0,
+        cart: []
+      }
     default:
       return state
   }

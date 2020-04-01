@@ -175,11 +175,11 @@ class Content extends Component{
                 <EditProduct show={this.state.showEdit} onHide={this.handleCloseEdit} product={this.state.selectProduct}  />
                 <DeleteProduct show={this.state.showDelete} onHide={this.handleCloseDelete} products={this.state.data} />
                 <nav aria-label="Page navigation example" style={{marginTop:'85.5vh', marginLeft:'50%'}}>
-                {/* <ul className="pagination" >
+                <ul className="pagination" >
                     {pagination.map((pagination)=>(
                         <li style={{color:'white',border:'1px solid white'}} className="page-item" key={pagination}><a className="form-control btn btn-primary" onClick={this.paginationHandle} id={pagination}>{pagination}</a></li>
                     ))}
-                </ul> */}
+                </ul>
                 </nav>
             </div>
         )

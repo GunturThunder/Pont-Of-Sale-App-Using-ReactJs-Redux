@@ -95,8 +95,8 @@ class Cart extends Component {
                         <Check />
                     </center>
                 </div>
-                <div type="button" className="btn btn-outline-primary" style={{float:'right',marginRight:35,marginTop:15}}>{this.convertToRupiah(total)}</div>
-                <center style={{marginTop:70}}>
+                <div type="button" className="btn btn-outline-primary" style={{float:'right',marginRight:35,marginTop:10}}>{this.convertToRupiah(total)}</div>
+                <center style={{marginTop:55}}>
                 <button onClick={this.handleShow} type="button" className="btn btn-primary" style={{width:'80%'}}>Checkout</button>
                 <CheckOut show={this.state.show} onHide={this.handleClose} />
                 </center>
