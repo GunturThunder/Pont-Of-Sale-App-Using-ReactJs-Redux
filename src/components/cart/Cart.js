@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './Cart.css';
 import logo from './pic.png';
-import cart from './Black Forest.png'
 import { connect } from 'react-redux';
 import { addQty, reduceQty, deleteFromCart } from '../redux/action/cart';
 import CheckOut from '../modal/CheckOut';
 
 class Cart extends Component {
-    state = {
+     state =  {
         show: false,
         selectDeleteProduct: null,
         selectProduct: null
@@ -28,20 +27,16 @@ class Cart extends Component {
         this.props.dispatch(addQty(cart))
     }
     reduceQuantity = (cart) => {
-        // console.log(qty)
         if (cart.qty > 1) {
             const initialTotal = this.props.total - cart.price
             cart.total = initialTotal
-            console.log(cart.total)
             this.props.dispatch(reduceQty(cart))
         }
     }
     deleteFromCart = (cart) => {
         const initialTotal = this.props.total - (cart.price * cart.qty)
         cart.total = initialTotal
-        // console.log("cart.total = " + cart.total, "initialTotal = " + initialTotal)
         this.props.dispatch(deleteFromCart(cart));
-        // console.log(id_product)
     };
     convertToRupiah = (angka) => {
         var rupiah = ''
@@ -51,9 +46,6 @@ class Cart extends Component {
       }
     render() {
         const { cart, total } = this.props
-        // console.log(cart)
-        // var total = cart.qty * cart.price
-        console.log(cart)
         const Check = () => {
             if (total == 0) {
                 return (
@@ -105,7 +97,6 @@ class Cart extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    // console.log(state.cart.cart)
     return {
         cart: state.cart.cart,
         total: state.cart.total

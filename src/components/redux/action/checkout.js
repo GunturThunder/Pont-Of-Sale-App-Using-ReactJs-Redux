@@ -8,10 +8,10 @@ export const postOrder = (data) => {
     }
   }
   
-  export const getHistory = () => {
-    // console.log('ini date', startDate, endDate)
+  export const getHistory = (startDate, endDate) => {
+    console.log('ini date', startDate, endDate)
     return {
       type : 'GET_HISTORY',
-      payload:  axios.get(`${process.env.REACT_APP_URL}order`)
+      payload:  axios.get(`http://localhost:4040/order?start=${startDate}&end=${endDate}`)
     }
   }

@@ -83,10 +83,24 @@ const cart = (state = initialState, action) => {
     case 'REMOVE_CART':
       return {
         ...state,
-        totalPurchase:0,
+        totalPurchase: 0,
         total: 0,
         cart: []
       }
+    case "GET_HISTORY_PENDING":
+      return {
+        ...state
+      };
+    case "GET_HISTORY_REJECTED":
+      return {
+        ...state
+      };
+    case "GET_HISTORY_FULFILLED":
+      console.log(action.payload)
+      return {
+        ...state,
+        histories: action.payload.data
+      };
     default:
       return state
   }

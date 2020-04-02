@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const addCart = (data) => {
   return {
     type: 'ADD_CART',
@@ -30,5 +32,13 @@ export const removeCart = (cart) => {
   return {
     type: 'REMOVE_CART',
     payload: cart
+  }
+}
+
+export const getHistory = (startDate, endDate) => {
+  console.log('ini date', startDate, endDate)
+  return {
+    type : 'GET_HISTORY',
+    payload:  axios.get(`${process.env.REACT_APP_API_URL}/order?start=${startDate}&end=${endDate}`)
   }
 }

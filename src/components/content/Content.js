@@ -14,7 +14,6 @@ import product from '../redux/reducers/product';
 import DeleteProduct from '../modal/DeleteProduct';
 import { addCart } from '../redux/action/cart';
 import { pagination } from '../redux/action/product'
-// import food from './Wiener Schnitzel.png'
 
 class Content extends Component{
     state = {
@@ -22,7 +21,6 @@ class Content extends Component{
         selectDeleteProduct: null,
         selectProduct: null
     }
-    // Insert Data
     handleShow = () => {
         this.setState({
             show: true
@@ -33,11 +31,8 @@ class Content extends Component{
             show: false
         })
     }
-    // <>
-    //Update 
+
     handleShowEdit = (e) => {
-        // console.log(this.id_product)
-        // e.preventDefault();
         this.setState({
         showEdit: true
         })
@@ -48,18 +43,14 @@ class Content extends Component{
         })
     }
     onSelectItemProductEdit = (product) => {
-        // console.log(this.product)
         this.setState({
             selectProduct: product,
             showEdit: true 
         })
     }
     
-    // <>
-    // Get Data
     getProducts(){
         this.props.dispatch(getProducts());
-        // this.props.dispatch(pagination(1));
     }   
     getCategorys(){
         this.props.dispatch(getCategorys());
@@ -68,10 +59,7 @@ class Content extends Component{
         this.getProducts();
         this.getCategorys();
     }
-    // <>
-    // Delete Data
     handleShowDelete = (products) => {
-        console.log(products)
         this.setState({
             data : products,
             showDelete: true
@@ -86,13 +74,11 @@ class Content extends Component{
     }
 
     onAddChart = (product) => {
-        // console.log(product)
         product.qty = 1 
         this.props.dispatch(addCart(product))
       }
 
     paginationHandle = (event) => {
-        // console.log(event.target.value)
         this.props.dispatch(pagination(event.target.id));
     }
     convertToRupiah = (angka) => {
@@ -102,14 +88,13 @@ class Content extends Component{
         return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('') + ',-'
       }
     render(){
-        // console.log(getProducts())
         const { products, categorys, pagination } = this.props;
         const Check = () =>{
             if(localStorage.getItem('status')==='admin'){
                 return(
                     <div>
                         <Link to="/category"><img src={fork} style={{width:"50px",height:"50px", marginTop:"15px"}}/></Link>
-                        <img src={list} style={{width:"50px",height:"50px", marginTop:"40px"}}/>
+                        <Link to="/history"><img src={list} style={{width:"50px",height:"50px", marginTop:"40px"}}/></Link>
                         <Link to="/user"><img src={user} style={{width:"50px",height:"50px", marginTop:"40px"}}/></Link>
                         <span className="plus-icon"><b onClick={this.handleShow} style={{cursor: "cell"}}>+</b></span><br/>
                     </div>
@@ -187,12 +172,10 @@ class Content extends Component{
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
     return{
         products: state.products.products,
         categorys: state.categorys.categorys,
         pagination: state.products.totalPage
-        // cart: state.cart.cart
     }
 }
 
