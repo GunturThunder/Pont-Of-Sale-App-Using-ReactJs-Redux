@@ -2,7 +2,7 @@
 	
 <h1 align="center">AsaUlu - Point Of Sales - Front-End</h1>
 
-AsaUlu is an web application that can helps cashier to manage production such as add product, edit product, delete product even order product
+AsaUlu is a web application that can helps cashier to manage production such as add product, edit product, delete product even order product
 </section>
 
 #### Table Of Content
