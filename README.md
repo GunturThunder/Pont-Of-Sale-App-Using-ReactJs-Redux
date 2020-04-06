@@ -8,11 +8,11 @@ AsaUlu is a web application that can helps cashier to manage production such as 
 #### Table Of Content
 <div class="header">
 	<ul>
-		<li><a href="#requirements">requirements</a></li>
+		<li><a href="#requirements">Requirements</a></li>
 		<li><a href="#how-to-run">How To Run</a></li>
 		<li><a href="#screenshoot">Screenshoot</a></li>
 		<li><a href="#related-project">Related Project</a></li>
-		<li class="app"><a href="http://bit.ly/hayuu-cafe" target="_blank">go to app</a></li>
+		<li class="app"><a href="http://asaulu.rf.gd/" target="_blank">go to app</a></li>
 	</ul>
 </div>
 
@@ -33,7 +33,7 @@ AsaUlu is a web application that can helps cashier to manage production such as 
 	#### Setup .env
 		Open .env file on your favorite code editor, and copy paste this code below :
 		```
-		REACT_APP_URL="http://20.20.20.147:4040/"
+		REACT_APP_URL="http://20.20.20.147:4040/" <= Your Ip
 		```
 4. type `npm start` for run dependencies
 </section>
