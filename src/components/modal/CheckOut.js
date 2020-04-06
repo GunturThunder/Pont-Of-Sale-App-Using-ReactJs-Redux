@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-
 import { connect } from 'react-redux';
-import { createProduct } from '../redux/action/product';
 import {postOrder} from '../redux/action/checkout'
 import { removeCart } from '../redux/action/cart'
 
@@ -16,7 +14,6 @@ class CheckOut extends Component {
     state = {
         show: false
     }
-    // Insert Data
     handleShow = () => {
         this.setState({
             show: true
@@ -31,17 +28,13 @@ class CheckOut extends Component {
         const data = {
             product: this.props.cart
         };
-
-        console.log(data)
-
-        await this.props.dispatch(postOrder(data));
+        await this.props.dispatch(postOrder(data))
+        alert('Succsess')
         await this.props.dispatch(removeCart(cart))
         this.props.onHide();
     }
     render() {
-        console.log(this.props)
         const { show, onHide,cart, total } = this.props
-        // console.log(cart, " ", total)
         return (
             <Modal show={show} onHide={onHide} variant="lg">
                 <Modal.Header closeButton>
@@ -68,7 +61,6 @@ class CheckOut extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    // console.log(state.cart.cart)
     return {
         cart: state.cart.cart,
         total: state.cart.total

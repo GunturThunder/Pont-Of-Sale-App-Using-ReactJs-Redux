@@ -13,20 +13,16 @@ class ProductAdd extends Component{
         description: '',
         image: ''
     }
-    
     onChangeImageHandler = (event)=>{
-        // this.setState({image:e.target.files[0]})
         this.setState({
             image: event.target.files[0]
         })
-        // console.log(e.target.files[0])
     }
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-
     onSubmit = (e) => {
         e.preventDefault();
         let data = new FormData();
@@ -36,12 +32,8 @@ class ProductAdd extends Component{
         data.append("stock", this.state.stock);
         data.append("description", this.state.description);
         data.append("image", this.state.image);
-
         this.props.dispatch(createProduct(data))
         this.props.onHide()
-        // this.props.onHandleClose()
-        // await this.props.dispatch(createProduct(this.state));
-        // await this.props.onHide();
     }
     render(){
         const { show, onHide, categorys } = this.props;
@@ -54,14 +46,12 @@ class ProductAdd extends Component{
                     <Form onSubmit={this.onSubmit}>
                     <Form.Group>
                     <Form.Label>Category</Form.Label>
-                        {/* <Form.Control as="select" value="Choose..."> */}
                         <select id="inputState" class="form-control" name="id_category" onChange={this.onChange}>
                             <option disabled>Choose...</option>
                             {categorys.map((category,index)=>
                                 <option key={index} value={category.id_category}>{category.name}</option>
                             )}
                         </select>
-                        {/* </Form.Control> */}
                     </Form.Group>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
@@ -91,11 +81,8 @@ class ProductAdd extends Component{
     }
 }
 const mapStateToProps = (state) => {
-    // console.log(state)
     return{
         categorys: state.categorys.categorys,
-        // cart: state.cart.cart
     }
 }
-
 export default connect(mapStateToProps)(ProductAdd);

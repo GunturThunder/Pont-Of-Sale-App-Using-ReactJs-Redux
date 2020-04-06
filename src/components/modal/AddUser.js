@@ -11,29 +11,15 @@ class AddUser extends Component{
         status: '',
         password: ''
     }
-    
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-
     onSubmit = (e) => {
         e.preventDefault();
-        // let data = new FormData();
-        // // data.append("id_user", this.state.id_user);
-        // data.append("name", this.state.name);
-        // data.append("email", this.state.email);
-        // data.append("status", this.state.status);
-        // data.append("password", this.state.password);
-
         this.props.dispatch(createUser(this.state))
-        // console.log(this.props.dispatch(createUser(data)))
-        // console.log("jekwjekw")
         this.props.onHide()
-        // this.props.onHandleClose()
-        // await this.props.dispatch(createProduct(this.state));
-        // await this.props.onHide();
     }
     render(){
         const { show, onHide } = this.props;
@@ -68,12 +54,8 @@ class AddUser extends Component{
     }
 }
 const mapStateToProps = (state) => {
-    // console.log(state)
     return{
         users : state.users.users
-        // categorys: state.categorys.categorys,
-        // cart: state.cart.cart
     }
 }
-
 export default connect(mapStateToProps)(AddUser);

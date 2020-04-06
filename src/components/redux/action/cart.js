@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 export const addCart = (data) => {
   return {
@@ -36,9 +36,8 @@ export const removeCart = (cart) => {
 }
 
 export const getHistory = (startDate, endDate) => {
-  console.log('ini date', startDate, endDate)
   return {
-    type : 'GET_HISTORY',
-    payload:  axios.get(`${process.env.REACT_APP_API_URL}/order?start=${startDate}&end=${endDate}`)
+    type: 'GET_HISTORY',
+    payload: axios.get(`${process.env.REACT_APP_API_URL}/order?start=${startDate}&end=${endDate}`)
   }
 }

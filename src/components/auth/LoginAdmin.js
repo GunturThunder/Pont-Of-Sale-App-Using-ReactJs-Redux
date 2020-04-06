@@ -19,7 +19,7 @@ class Login extends Component{
     }
 
     componentDidMount(){
-        if(localStorage.getItem('token')){
+        if(window.localStorage.getItem('token')){
             this.props.history.push('/');
         }
     }
@@ -35,10 +35,10 @@ class Login extends Component{
         axios
             .post(process.env.REACT_APP_URL+'user/login', this.state)
             .then(res => {
-                localStorage.setItem('token', res.data.token);
-                localStorage.setItem('user-id', res.data.id_user);
-                localStorage.setItem('isAuth', true);
-                localStorage.setItem('status',res.data.status)
+                window.localStorage.setItem('token', res.data.token);
+                window.localStorage.setItem('user-id', res.data.id_user);
+                window.localStorage.setItem('isAuth', true);
+                window.localStorage.setItem('status',res.data.status)
                 this.props.history.push('/');
             })
             .catch(err => {
@@ -74,24 +74,6 @@ class Login extends Component{
                     </Form>
                 </div>
             </div>
-            // <div className="container" style={{border:'1px solid #F6FEFF', marginTop:'25vh', backgroundColor:'#ECE8E8', borderRadius:'50px 50px 50px 50px'}}>
-            //     <center>
-            //     <h4 style={{ marginTop: '10px', color:'#949C9C' }}>Login</h4><hr/>
-            //     <div className="row justify-content-md-center">
-            //         <div className="col-md-8">
-            //             <form onSubmit={this.onSubmit}>
-            //                 <div className="form-group">
-            //                     <input type="text" className="form-control" placeholder="Enter email" name="email" onChange={this.onChange}/>
-            //                 </div>
-            //                 <div className="form-group">
-            //                     <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={this.onChange} />
-            //                 </div>
-            //                 <button type="submit" className="btn btn-primary">Login</button>
-            //             </form>
-            //         </div>
-            //     </div>
-            //     </center>
-            // </div>
         )
     }
 }

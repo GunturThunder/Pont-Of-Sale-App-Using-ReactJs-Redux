@@ -22,7 +22,6 @@ class NavBar extends Component {
     }
 
     searchProductHadle = async (event) => {
-        // console.log
         await this.setState({
             name: event.target.value
         })
@@ -39,10 +38,8 @@ class NavBar extends Component {
         this.props.history.push('/login');
     }
     render() {
-        // console.log("iniiiiii",this.props.cart)
         return (
             <div className="navbar" style={{ margin: '0', padding: '0' }}>
-
                 <Navbar bg="white" expand="lg" style={{ width: '75%', borderRight: '1px solid #F2F2F2' }}>
                     <img src={logo} style={{ width: "40px", height: "40px" }} />
                     <Navbar.Brand href="/" style={{ marginLeft: '1%' }}><b style={{ color: '#007BFF' }}>AsaUlu</b></Navbar.Brand>
@@ -68,20 +65,13 @@ class NavBar extends Component {
                 <div className="cartt">
                     <b>Cart</b> <span className="div-cart">{this.props.cart}</span>
                 </div>
-
             </div>
         )
     }
 }
-
-
-
-// export default NavBar;
-
 const mapStateToProps = (state) => {
     return {
         cart: state.cart.totalPurchase
     }
 }
-
 export default withRouter(connect(mapStateToProps)(NavBar));

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-
 import { connect } from 'react-redux';
 import { updateProduct } from '../redux/action/product';
 
@@ -13,23 +12,18 @@ class ProductAdd extends Component{
         description: '',
         image: ''
     }
-    
     onChangeImageHandler = (event)=>{
-        // this.setState({image:e.target.files[0]})
         this.setState({
             image: event.target.files[0]
         })
-        // console.log(e.target.files[0])
     }
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-
     onSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.props)
         const id_product = this.props.product.id_product;
         let data = new FormData();
         data.append("id_category", this.state.id_category);
@@ -38,15 +32,10 @@ class ProductAdd extends Component{
         data.append("stock", this.state.stock);
         data.append("description", this.state.description);
         data.append("image", this.state.image);
-
         this.props.dispatch(updateProduct(id_product, data));
         this.props.onHide()
-        // this.props.onHandleClose()
-        // await this.props.dispatch(createProduct(this.state));
-        // await this.props.onHide();
     }
     render(){
-        // console.log(this.props)
         const { show, onHide, categorys } = this.props;
         console.log(categorys)
         return(
@@ -97,10 +86,8 @@ class ProductAdd extends Component{
     
 }
 const mapStateToProps = (state) => {
-    // console.log(state)
     return{
         categorys: state.categorys.categorys,
-        // cart: state.cart.cart
     }
 }
 

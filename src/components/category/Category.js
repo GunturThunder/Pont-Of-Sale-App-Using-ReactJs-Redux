@@ -15,8 +15,6 @@ class Category extends Component{
         selectCategory: null
     }
     handleShowEdit = (e) => {
-        // console.log(this.id_product)
-        // e.preventDefault();
         this.setState({
         showEdit: true
         })
@@ -27,7 +25,6 @@ class Category extends Component{
         })
     }
     onSelectItemCategoryEdit = (category) => {
-        // console.log(this.product)
         this.setState({
             selectCategory: category,
             showEdit: true 
@@ -52,7 +49,6 @@ class Category extends Component{
     }
 
     handleShowDelete = (categorys ) => {
-        console.log(categorys)
         this.setState({
             data : categorys,
             showDelete: true
@@ -67,7 +63,6 @@ class Category extends Component{
     }
     render(){
         const { categorys } = this.props;
-        // console.log(category)
         return(
             <div className="wrap" style={{backgroundColor:'#EFF3F3', width:'100%', height:'100vh', position:'absolute'}}>
                 <div className="container" style={{marginTop:'10vh'}}>
@@ -108,7 +103,6 @@ class Category extends Component{
     }
 }
 const mapStateToProps = (state) => {
-    //console.log(state)
     return{
         categorys: state.categorys.categorys
     }
